@@ -1,2 +1,2 @@
 # cybersecurity-ctf-writeups
-my leveling up in cyber
+My hands-on cybersecurity learning notes, CTF writeups, Linux practice, reverse engineering, and defensive security lessons.
