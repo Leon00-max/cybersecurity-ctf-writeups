@@ -12,3 +12,14 @@ However, understanding the program's input/output sequence helps analyze program
 In C programs, input handling deserves particular attention because unsafe functions or incorrect bounds can lead to memory corruption.
 
 Developer mindset: Don't only ask whether input/output works. Ask what happens with malformed, oversized, missing, piped, or unexpected input.
+USER / SCRIPT
+     │
+     ▼
+   stdin
+     │
+     ▼
+ C PROGRAM
+     │
+     ├── stdout ──→ normal output
+     │
+     └── stderr ──→ errors
