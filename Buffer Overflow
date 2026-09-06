@@ -1,1 +1,14 @@
 
+Lesson: Standard I/O and buffering in C
+
+C's standard I/O functions may buffer output instead of immediately sending it to the terminal. fflush(stdout) forces pending output on the standard-output stream to be written immediately. 
+This is important for interactive programs where a prompt must be displayed before waiting for user input.
+
+The deeper lesson is that C programs communicate through streams such as stdin, stdout, and stderr. These streams may connect to terminals, files, pipes, or other programs. 
+Understanding buffering becomes important in systems programming, automation, networking, and security tooling.
+
+From a security perspective, buffering is normally not a vulnerability by itself.
+However, understanding the program's input/output sequence helps analyze program behavior and build reliable testing tools.
+In C programs, input handling deserves particular attention because unsafe functions or incorrect bounds can lead to memory corruption.
+
+Developer mindset: Don't only ask whether input/output works. Ask what happens with malformed, oversized, missing, piped, or unexpected input.
