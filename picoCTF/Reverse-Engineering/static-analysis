@@ -49,3 +49,4 @@ echo "Ripping strings from binary ..."
 strings "$1" > "$1.ltdis.strings.txt"
 
 echo "Done!"
+i then search the flag using this comman "$ grep picoCTF static.ltdis.strings.txt" to see the flag
