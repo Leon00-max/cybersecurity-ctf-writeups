@@ -10,3 +10,24 @@ Static ain't always noise – Write-Up
 **Tools Used:** `file`, `chmod`, `./ltdis.sh`, `strings`, `grep`  
 **Skills Practiced:** Static analysis, binary inspection, string extraction, Linux command line basics  
 **Prerequisites:** Basic familiarity with Linux terminal and CTF workflows  
+
+## Challenge Description
+
+> Can you look at the data in this binary? The bash script might help!  
+> *Provided files:* `static`, `ltdis.sh` at "https://learn.cylabacademy.org/learning-paths/14/107?workspace=true"
+
+---
+
+## Solution Steps
+
+### 1. Initial Reconnaissance
+
+I started by downloading the two files and listing the directory to confirm what was given:
+
+```bash
+$ ls -la
+total 36
+drwxr-xr-x 2 user user  4096 Sep  7 12:00 .
+drwxr-xr-x 3 user user  4096 Sep  7 12:00 ..
+-rw-r--r-- 1 user user  8408 Sep  7 12:00 ltdis.sh
+-rw-r--r-- 1 user user 16712 Sep  7 12:00 static
