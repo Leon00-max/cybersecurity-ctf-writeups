@@ -31,3 +31,10 @@ drwxr-xr-x 2 user user  4096 Sep  7 12:00 .
 drwxr-xr-x 3 user user  4096 Sep  7 12:00 ..
 -rw-r--r-- 1 user user  8408 Sep  7 12:00 ltdis.sh
 -rw-r--r-- 1 user user 16712 Sep  7 12:00 static
+
+
+The file static is clearly a binary, while ltdis.sh is a shell script. I checked what kind of binary static i
+
+$ file static
+static: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=..., not stripped
+
