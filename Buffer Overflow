@@ -23,3 +23,11 @@ USER / SCRIPT
      ├── stdout ──→ normal output
      │
      └── stderr ──→ errors
+Avoid Unsafe Functions
+Unsafe	Safe Alternative
+gets()	fgets(buf, size, stdin)
+strcpy()	strncpy() or strlcpy() (if available)
+sprintf()	snprintf()
+strcat()	strncat()
+scanf("%s", buf)	scanf("%99s", buf) or fgets
+Always specify the maximum length to avoid overflow.
