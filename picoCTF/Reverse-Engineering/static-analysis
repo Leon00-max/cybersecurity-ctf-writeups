@@ -1,10 +1,12 @@
 challenge Name :plumbing
 
+Static ain't always noise – Write-Up
+
 **CTF Event:** picoCTF 2021  
 **Category:** General Skills  
 **Difficulty:** Easy  
 **Points:** 100  
 
-**Tools Used:** `strings`, `grep`, `chmod`  
-**Skills Learned:** Static analysis, extracting strings from binaries, basic Linux commands  
-**Prerequisites:** None (or list previous challenges that helped)  
+**Tools Used:** `file`, `chmod`, `./ltdis.sh`, `strings`, `grep`  
+**Skills Practiced:** Static analysis, binary inspection, string extraction, Linux command line basics  
+**Prerequisites:** Basic familiarity with Linux terminal and CTF workflows  
