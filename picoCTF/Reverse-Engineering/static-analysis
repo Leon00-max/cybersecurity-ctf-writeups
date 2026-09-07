@@ -38,3 +38,14 @@ The file static is clearly a binary, while ltdis.sh is a shell script. I checked
 $ file static
 static: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, BuildID[sha1]=..., not stripped
 
+$ cat ltdis.sh
+#!/bin/bash
+# ltdis.sh - a simple script to run common static analysis tools on a binary
+
+echo "Attempting disassembly of $1 ..."
+objdump -D "$1" > "$1.ltdis.x86_64.txt"
+
+echo "Ripping strings from binary ..."
+strings "$1" > "$1.ltdis.strings.txt"
+
+echo "Done!"
