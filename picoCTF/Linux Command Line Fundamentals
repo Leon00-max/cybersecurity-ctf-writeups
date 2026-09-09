@@ -3,5 +3,8 @@ THE CLUES IN THE CHALLENGE DESCRIPTION:
 # "What's a pipe? No not that kind of pipe... This kind"
 # This was a direct hint to use the Linux pipe operator: |
 
-# 2. WHY THE PIPE (|) WAS THE BEST APPROACH:
-# As you noticed, running 'nc' by itself spits out a massive wall of dummy text.
+# 2. WHY THE PIPE(|) WAS THE BEST APPROACH:
+# As i noticed, running 'nc' by itself spits out a massive wall of dummy text.
+# i could save it to a file first like this: nc fickle-tempest.picoctf.net 57471 > output.txt
+# But the challenge specifically asked me to handle it "outside of a file".
+# The pipe (|) takes the output of the first command (nc) and feeds it directly
