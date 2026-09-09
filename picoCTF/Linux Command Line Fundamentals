@@ -29,3 +29,4 @@ Handle process data outside of a file by redirecting standard output (stdout) fr
 ```bash
 # Connected to the netcat server and piped (|) the massive output directly to grep
 nc fickle-tempest.picoctf.net 57471 | grep "picoCTF{"
+ and the flag is picoCTF{digital_plumb3r_0BAc587E}
