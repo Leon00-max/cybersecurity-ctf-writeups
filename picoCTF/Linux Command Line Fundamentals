@@ -23,3 +23,9 @@ Handle process data outside of a file by redirecting standard output (stdout) fr
 ##  Real-World Application
 * Blue Team (SOC Analysis):** Filtering massive, real-time server logs to hunt for specific IP addresses or malware signatures without filling up the hard drive.
 * Red Team (Pentesting):** Pipelining huge outputs from scanning tools directly into filtering tools to isolate vulnerable targets quickly.
+
+
+#  Process & Commands Used
+```bash
+# Connected to the netcat server and piped (|) the massive output directly to grep
+nc fickle-tempest.picoctf.net 57471 | grep "picoCTF{"
