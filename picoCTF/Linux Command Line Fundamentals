@@ -13,3 +13,6 @@ THE CLUES IN THE CHALLENGE DESCRIPTION:
 # 3. WHY I CHOSE 'grep':
 # Hint 1 said: "Remember the flag format is picoCTF{XXXX}"
 # 'grep' is the ultimate Linux tool for finding a specific string of text inside massive data.
+# No other command is as fast or efficient for this specific job. 
+# It reads the thousands of lines coming through the pipe, ignores all the junk, 
+# and only prints the single line that matches "picoCTF{".
