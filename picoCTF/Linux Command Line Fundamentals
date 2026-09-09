@@ -11,3 +11,5 @@ THE CLUES IN THE CHALLENGE DESCRIPTION:
 # into the next command in memory, skipping the need for a file entirely.
 
 # 3. WHY I CHOSE 'grep':
+# Hint 1 said: "Remember the flag format is picoCTF{XXXX}"
+# 'grep' is the ultimate Linux tool for finding a specific string of text inside massive data.
