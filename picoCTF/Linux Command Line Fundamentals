@@ -8,3 +8,6 @@ THE CLUES IN THE CHALLENGE DESCRIPTION:
 # i could save it to a file first like this: nc fickle-tempest.picoctf.net 57471 > output.txt
 # But the challenge specifically asked me to handle it "outside of a file".
 # The pipe (|) takes the output of the first command (nc) and feeds it directly
+# into the next command in memory, skipping the need for a file entirely.
+
+# 3. WHY I CHOSE 'grep':
