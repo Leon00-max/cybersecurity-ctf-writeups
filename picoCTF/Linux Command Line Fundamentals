@@ -19,3 +19,7 @@ THE CLUES IN THE CHALLENGE DESCRIPTION:
 
 # Objective
 Handle process data outside of a file by redirecting standard output (stdout) from a live network stream directly into a text search tool.
+
+##  Real-World Application
+* Blue Team (SOC Analysis):** Filtering massive, real-time server logs to hunt for specific IP addresses or malware signatures without filling up the hard drive.
+* Red Team (Pentesting):** Pipelining huge outputs from scanning tools directly into filtering tools to isolate vulnerable targets quickly.
