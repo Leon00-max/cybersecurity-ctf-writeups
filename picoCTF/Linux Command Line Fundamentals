@@ -1,3 +1,7 @@
 THE CLUES IN THE CHALLENGE DESCRIPTION:
 # "Sometimes you need to handle process data outside of a file."
 # "What's a pipe? No not that kind of pipe... This kind"
+# This was a direct hint to use the Linux pipe operator: |
+
+# 2. WHY THE PIPE (|) WAS THE BEST APPROACH:
+# As you noticed, running 'nc' by itself spits out a massive wall of dummy text.
