@@ -38,4 +38,22 @@ You have to decode them to see what the malware is doing.
 # 2. Web Application Security: Network traffic, cookies, and URLs often encode special characters in Hex (e.g., %20 for a space).
 
 mv 03_Pending_Challenge.md 03_Hex_to_ASCII.md 2>/dev/null
+cat << 'EOF' > 03_Hex_to_ASCII.md
+# Challenge 03: Hex to ASCII
+
+## Category
+General Skills / Cryptography Fundamentals
+
+##  Objective
+Convert a string of hexadecimal base numbers (identified by the '0x' prefix) into readable ASCII text.
+
+##  Real-World Application
+* Malware Analysis:** Reverse engineers constantly decode hex strings because attackers encode their malicious payloads, IP addresses, and commands to evade detection.
+* Network Analysis:** Understanding data encoding is essential for analyzing packet captures (PCAPs) where data is often represented in raw hexadecimal formats.
+
+##  Process & Commands Used
+```bash
+# Method 1: Using Python in the terminal to decode the hex string
+python3 -c "print(bytes.fromhex('7069636f4354467b34356331315f6e305f717533353731306e355f316c6c5f743331315f79335f6e305f6c3133355f34343564343138307d').decode('utf-8'))"
+
 
