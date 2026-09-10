@@ -56,4 +56,5 @@ Convert a string of hexadecimal base numbers (identified by the '0x' prefix) int
 # Method 1: Using Python in the terminal to decode the hex string
 python3 -c "print(bytes.fromhex('7069636f4354467b34356331315f6e305f717533353731306e355f316c6c5f743331315f79335f6e305f6c3133355f34343564343138307d').decode('utf-8'))"
 
-
+# Method 2: Using the xxd tool
+echo "70 69 63 6f 43 54 46 7b 34 35 63 31 31 5f 6e 30 5f 71 75 33 35 37 31 30 6e 35 5f 31 6c 6c 5f 74 33 31 31 5f 79 33 5f 6e 30 5f 6c 31 33 35 5f 34 34 35 64 34 31 38 30 7d" | xxd -r -p
