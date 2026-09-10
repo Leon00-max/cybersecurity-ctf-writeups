@@ -37,3 +37,5 @@ Tried CyberChef – I went to the website, pasted the whole string, and looked f
 You have to decode them to see what the malware is doing.
 # 2. Web Application Security: Network traffic, cookies, and URLs often encode special characters in Hex (e.g., %20 for a space).
 
+mv 03_Pending_Challenge.md 03_Hex_to_ASCII.md 2>/dev/null
+
