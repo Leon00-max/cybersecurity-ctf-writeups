@@ -5,3 +5,8 @@ You could look up an ASCII table and solve this problem manually, but I would re
 I knew `0x` meant hexadecimal. I also knew ASCII maps numbers to characters. But I had no idea how many characters there were, and I didn't want to manually convert 50+ hex values. That sounded like torture.
 
 ## First Thoughts – "This Should Be Easy"
+I thought, *"Okay, hex to ASCII. I can just use Python."* So I opened my terminal and tried:
+
+```python
+>>> hex_string = "0x70 0x69 0x63 0x6f ..."
+>>> bytes.fromhex(hex_string).decode()
