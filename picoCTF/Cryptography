@@ -32,6 +32,6 @@ Tried echo ... | xxd -r -p – Still garbage because of the 0x prefixes.
 
 Tried CyberChef – I went to the website, pasted the whole string, and looked for "From Hex". But I pasted it with 0x and spaces. It didn't work. I thought CyberChef was broken.
 
-
+######WHERE THIS APPLIES IN THE REAL WORLD:##############
 
 
