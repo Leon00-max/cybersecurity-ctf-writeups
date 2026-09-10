@@ -33,5 +33,7 @@ Tried echo ... | xxd -r -p – Still garbage because of the 0x prefixes.
 Tried CyberChef – I went to the website, pasted the whole string, and looked for "From Hex". But I pasted it with 0x and spaces. It didn't work. I thought CyberChef was broken.
 
 ######WHERE THIS APPLIES IN THE REAL WORLD:##############
-
+# 1. Reverse Engineering / Malware Analysis: Malware authors often encode strings (like URLs or IP addresses) in Hex or Base64 to hide them from simple antivirus scans. 
+You have to decode them to see what the malware is doing.
+# 2. Web Application Security: Network traffic, cookies, and URLs often encode special characters in Hex (e.g., %20 for a space).
 
