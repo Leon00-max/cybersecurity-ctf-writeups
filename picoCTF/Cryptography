@@ -1,3 +1,6 @@
+##Tools I Used:** CyberChef, Python, xxd, manual ASCII table  
+##Time Spent:** Way too long for something this simple 
+
 ## The Challenge
 When I first read the challenge, I saw a long string of numbers like `0x70 0x69 0x63 0x6f ...`. The description said:
 > The ‘0x’ prefix in front of these numbers tells you that the number is in hexadecimal base. 
