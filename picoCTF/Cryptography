@@ -13,3 +13,14 @@ I thought, *"Okay, hex to ASCII. I can just use Python."* So I opened my termina
 ```python
 >>> hex_string = "0x70 0x69 0x63 0x6f ..."
 >>> bytes.fromhex(hex_string).decode()
+
+I'm not exaggerating when I say I tried at least 15 different things. Here's a rough log of my chaos:
+
+Manual ASCII table – I converted the first few: 0x70 = p, 0x69 = i, 0x63 = c, 0x6f = o. I got pico. Then I looked at the rest and thought, "Nope, not doing this for 50 more."
+
+Python with bytes.fromhex() – Failed because of 0x and spaces.
+
+Python with replace('0x', '') – Still failed because of spaces.
+
+
+
