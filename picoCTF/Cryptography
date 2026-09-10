@@ -21,6 +21,11 @@ Manual ASCII table – I converted the first few: 0x70 = p, 0x69 = i, 0x63 = c, 
 Python with bytes.fromhex() – Failed because of 0x and spaces.
 
 Python with replace('0x', '') – Still failed because of spaces.
+Python with replace(' ', '') – Finally got a hex string, but then I realized I needed to remove 0x too.
+
+Python with both replaces – It worked! But I accidentally ran it in a fresh terminal and lost the string. I had to re-copy everything.
+
+Tried binascii.unhexlify() – Same issues.
 
 
 
