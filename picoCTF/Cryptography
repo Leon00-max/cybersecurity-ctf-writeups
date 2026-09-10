@@ -26,6 +26,12 @@ Python with replace(' ', '') – Finally got a hex string, but then I realized I
 Python with both replaces – It worked! But I accidentally ran it in a fresh terminal and lost the string. I had to re-copy everything.
 
 Tried binascii.unhexlify() – Same issues.
+Tried xxd -r -p – Forgot that xxd expects plain hex without 0x or spaces. Got garbage.
+
+Tried echo ... | xxd -r -p – Still garbage because of the 0x prefixes.
+
+Tried CyberChef – I went to the website, pasted the whole string, and looked for "From Hex". But I pasted it with 0x and spaces. It didn't work. I thought CyberChef was broken.
+
 
 
 
