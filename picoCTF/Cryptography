@@ -2,3 +2,4 @@
 When I first read the challenge, I saw a long string of numbers like `0x70 0x69 0x63 0x6f ...`. The description said:
 > The ‘0x’ prefix in front of these numbers tells you that the number is in hexadecimal base. 
 You could look up an ASCII table and solve this problem manually, but I would recommend looking at the hints for this problem for a more efficient solution.
+I knew `0x` meant hexadecimal. I also knew ASCII maps numbers to characters. But I had no idea how many characters there were, and I didn't want to manually convert 50+ hex values. That sounded like torture.
