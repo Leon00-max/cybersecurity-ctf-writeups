@@ -9,3 +9,9 @@ Level 19 → 20 sits at the **start of the privilege escalation arc** of the Ban
 From Level 19 onward, the game shifts to **privilege escalation** — the art of using misconfigured permissions or binaries to act as another user.
 This is the same mental model used in real penetration tests after an attacker gains an initial foothold on a Linux machine.
 Specifically, this level introduces the **SUID (Set Owner User ID) bit** — one of the most important concepts in Linux privilege escalation.
+It is the first of a chain:
+- Level 19 → 20: SUID binary that runs a command as another user
+- Level 20 → 21: SUID binary that talks to a port you control (confused deputy)
+- Level 21 → 22: Cron job leaking a password file
+- Level 22 → 23: Cron job with a predictable filename
+- Level 23 → 24: Cron job executing scripts from a writable directory
