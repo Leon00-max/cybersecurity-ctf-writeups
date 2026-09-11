@@ -6,3 +6,5 @@ Level 19 → 20 sits at the **start of the privilege escalation arc** of the Ban
 - Encoding and decoding (`base64`, `rot13`, `hexdump`)
 - Networking basics (`nc`, `openssl s_client`, `nmap`)
 - Cron jobs and scheduled tasks
+From Level 19 onward, the game shifts to **privilege escalation** — the art of using misconfigured permissions or binaries to act as another user.
+This is the same mental model used in real penetration tests after an attacker gains an initial foothold on a Linux machine.
