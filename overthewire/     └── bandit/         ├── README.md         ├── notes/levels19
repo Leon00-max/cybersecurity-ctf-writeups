@@ -37,3 +37,10 @@ It reminds me of:
 - **Real-world SUID exploits** — PwnKit (`pkexec`), Baron Samedit (`sudo`), Looney Tunables (`ld.so`), Dirty Pipe (kernel-level), Sudoedit. All of them exploit privileged binaries.
 
 The challenge is essentially saying: "A privileged binary is sitting in your home directory. Figure out what it does, then use it."
+## 3. What I tried — 5 attempts and how I picked the best option
+
+### Attempt 1 — Just try to read the password directly
+
+```bash
+cat /etc/bandit_pass/bandit20
+Result: Permission denied
