@@ -30,3 +30,10 @@ Three things jump out immediately:
 3. **"The password … can be found in the usual place (/etc/bandit_pass)"** → The password file is at `/etc/bandit_pass/bandit20`. Normally, as `bandit19`, you cannot read it. But the SUID binary runs as `bandit20`, so it can.
 
 It reminds me of:
+
+- **Linux permission model** — owner, group, others, and the special bits (SUID, SGID, sticky).
+- **Classic privilege escalation** — the same idea as `sudo`, but implemented manually.
+- **Confused deputy problem** — a program with more privileges than the caller is tricked into using them for the caller.
+- **Real-world SUID exploits** — PwnKit (`pkexec`), Baron Samedit (`sudo`), Looney Tunables (`ld.so`), Dirty Pipe (kernel-level), Sudoedit. All of them exploit privileged binaries.
+
+The challenge is essentially saying: "A privileged binary is sitting in your home directory. Figure out what it does, then use it."
