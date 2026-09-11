@@ -23,3 +23,10 @@ The challenge text says:
 > "To gain access to the next level, you should use the setuid binary in the homedirectory. Execute it without arguments to find out how to use it. The password for this level can be found in the usual place (/etc/bandit_pass), after you have used the setuid binary."
 
 Three things jump out immediately:
+**"setuid binary"** → This is the key word. In Linux, a file with the SUID bit runs with the privileges of its owner, not the user who executes it. This is exactly the mechanism that lets a low-privileged user perform a privileged action.
+
+2. **"Execute it without arguments to find out how to use it"** → The binary is self-documenting. This is a friendly hint. In real life, you'd run `--help`, `-h`, or strings on the binary to understand it.
+
+3. **"The password … can be found in the usual place (/etc/bandit_pass)"** → The password file is at `/etc/bandit_pass/bandit20`. Normally, as `bandit19`, you cannot read it. But the SUID binary runs as `bandit20`, so it can.
+
+It reminds me of:
