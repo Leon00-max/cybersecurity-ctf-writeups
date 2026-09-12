@@ -6,3 +6,8 @@ Retrieve the password for `bandit24` by inspecting a system `cron` job and creat
 - Cron job scheduling (`/etc/cron.d/`)
 - Writing bash payload scripts to extract restricted files
 - File permission configuration (`chmod 777`) for execution by background daemons
+
+## Commands Used
+`cat`, `mkdir`, `chmod`, `nano`, `cp`, `ls`
+
+
