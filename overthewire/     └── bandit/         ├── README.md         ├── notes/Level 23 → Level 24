@@ -27,3 +27,10 @@ cp /tmp/my_dir/script.sh /var/spool/bandit24/foo/
 ##Retrieve Flag
 Waited 60 seconds and read the output:
 cat /tmp/my_dir/password.txt
+**Best Practices for Security Write-Ups**
+
+* **Focus on the "Why":** Explain *why* a specific command or flag was chosen (e.g., `-ign_eof` for `openssl` or `-i` for `ssh`), not just the command itself.
+* **Redacting Flags vs. Showing Flags:** Many platforms prefer you redact actual password strings (e.g., using `[REDACTED]`) to prevent simple copy-pasting by others, while highlighting the methodology.
+* **Include Error Handling:** Documenting common errors you ran into (like `ssh: Could not resolve hostname` or permission denied errors) makes your write-up significantly more valuable to readers.
+
+<FollowUp label="Want a Python or Bash script to automatically generate all 26 Markdown template files?" query="Can you write a script to automatically generate the 26 Markdown template files for my OverTheWire repository?"/>
