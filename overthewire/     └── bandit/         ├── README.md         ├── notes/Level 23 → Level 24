@@ -9,5 +9,9 @@ Retrieve the password for `bandit24` by inspecting a system `cron` job and creat
 
 ## Commands Used
 `cat`, `mkdir`, `chmod`, `nano`, `cp`, `ls`
+## Solution Walkthrough
 
-
+1. **Inspect the Cron Job**
+   Checked `/etc/cron.d/` to find the script scheduled for `bandit24`:
+   ```bash
+  
