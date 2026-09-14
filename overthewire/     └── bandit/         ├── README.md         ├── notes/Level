@@ -1,4 +1,4 @@
-# Level 23 → Level 24
+# Level
 
 ## Objective
 Retrieve the password for `bandit24` by inspecting a system `cron` job and creating a custom shell script.
