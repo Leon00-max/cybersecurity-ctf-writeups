@@ -11,3 +11,8 @@ A common and weak way to limit what a user account can do on a Linux system is t
 The idea: the user logs in, sees or does one narrow thing, and the session ends before they can run arbitrary commands.
 The flaw in this design is almost always the same one: restricting the login shell does not restrict the underlying account's actual filesystem permissions or the other binaries available on the system. If any program reachable from within that restricted context is capable of spawning a subshell  a text editor, a pager with an "open in editor" feature,
 a scripting language interpreter, even some binaries with a ! shell-out feature the restriction can be bypassed entirely, and the attacker or tester ends up with a full, unrestricted shell running as that account.
+
+This is not an obscure trick. It's a well-known, actively maintained, publicly documented vulnerability class:
+
+GTFOBins (gtfobins.github.io) catalogues dozens of common Unix binaries editors, pagers, find, awk, python, man, ftp, even journalctl along with the exact technique to escape a restricted shell or escalate privileges using each one, when that binary is reachable in a restricted context or carries elevated permissions.
+This maps to MITRE ATT&CK T1548  Abuse Elevation Control Mechanism, and adjacent techniques under Defense Evasion or Privilege Escalation.
