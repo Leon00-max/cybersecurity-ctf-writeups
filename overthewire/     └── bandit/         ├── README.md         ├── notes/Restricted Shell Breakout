@@ -1,1 +1,13 @@
-Linux Restricted Shell Breakout and SUID Privilege Escalation
+#######################Linux Restricted Shell Breakout and SUID Privilege Escalation#####################################
+######     Methodology Notes     #####
+
+A hands on study of a real, catalogued Linux vulnerability class, practiced against a legal training environment (OverTheWire Bandit). Specific level solutions are intentionally omitted in respect of OverTheWire's no spoiler policy  this writeup documents the underlying concept class, 
+the methodology I used to reason through it, the mistakes I made along the way, and how it maps to real-world offensive and defensive security work.
+
+
+1. The concept: interface restriction vs. capability restriction
+
+A common and weak way to limit what a user account can do on a Linux system is to give it a restricted shell  either rbash, or a custom wrapper script set as the account's login shell  instead of a normal interactive shell like /bin/bash. 
+The idea: the user logs in, sees or does one narrow thing, and the session ends before they can run arbitrary commands.
+The flaw in this design is almost always the same one: restricting the login shell does not restrict the underlying account's actual filesystem permissions or the other binaries available on the system. If any program reachable from within that restricted context is capable of spawning a subshell  a text editor, a pager with an "open in editor" feature,
+a scripting language interpreter, even some binaries with a ! shell-out feature the restriction can be bypassed entirely, and the attacker or tester ends up with a full, unrestricted shell running as that account.
