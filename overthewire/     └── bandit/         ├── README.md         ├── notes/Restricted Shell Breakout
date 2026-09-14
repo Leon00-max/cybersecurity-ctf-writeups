@@ -16,3 +16,14 @@ This is not an obscure trick. It's a well-known, actively maintained, publicly d
 
 GTFOBins (gtfobins.github.io) catalogues dozens of common Unix binaries editors, pagers, find, awk, python, man, ftp, even journalctl along with the exact technique to escape a restricted shell or escalate privileges using each one, when that binary is reachable in a restricted context or carries elevated permissions.
 This maps to MITRE ATT&CK T1548  Abuse Elevation Control Mechanism, and adjacent techniques under Defense Evasion or Privilege Escalation.
+
+##Core takeaway:
+A control that restricts the interface to a system, without restricting the capabilities reachable through that interface, is not a real access control  it's an inconvenience.
+
+2. Methodology I used to work through it
+
+i) Confirm the restriction exists and observe its exact behavior first, rather than assuming. I connected normally, watched what happened a script displays content, then the session terminates, and treated that observed behavior as the actual constraint to work around  not a guess 
+about what the constraint might be.
+ii) Identify which program is doing the "display and exit" work. Restricted shells built around a pager (more/less) are extremely common, because sysadmins reach for "just show them a message" as a quick way to build a limited-purpose account.
+iii) Recall or lookup which features of that program can spawn a subshell. Pagers commonly support an "edit this file" shortcut that launches $EDITOR. If the editor itself isn't disabled or restricted, this becomes the pivot point.
+iv) Manipulate the environment to force the intended behavior to trigger. Some display and exit scripts only exit cleanly because the content fits entirely on the current screen. Reducing the terminal's dimensions before connecting can force the pager to pause midoutput instead of finishing and exiting  creating the window needed to invoke the editor.
