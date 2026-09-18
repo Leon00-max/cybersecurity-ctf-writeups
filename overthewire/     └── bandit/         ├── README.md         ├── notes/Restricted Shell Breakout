@@ -40,3 +40,7 @@ If that SUID binary is a wrapper that executes an arbitrary, attacker-supplied c
 found in real audits, and it maps to MITRE ATT&CK T1548.001 — Setuid and Setgid.
 
 Verified real-world examples of this exact category: misconfigured SUID backup/helper scripts written by sysadmins that internally call sudo-equivalent actions without sanitizing input; legacy setuid utilities left over from older Unix administration habits; custom "helper" binaries meant to let a low-privilege service account perform one specific privileged action, but implemented without restricting which action.
+
+4. What this looks like as an actual attack chain in a real environment
+
+Stitching the two techniques together mirrors a real, common lateral-movement/privilege-escalation chain, not just a wargame puzzle:
