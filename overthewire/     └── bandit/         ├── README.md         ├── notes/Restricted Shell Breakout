@@ -36,4 +36,7 @@ Once inside a shell for the target account, standard practice is to enumerate be
 
 This is where a second, related vulnerability class often shows up: a SUID (Set User ID) binary. On Linux, a file with the SUID bit set runs with the file owner's effective privileges regardless of who executes it — visible as a lowercase s in the owner-execute position of ls -l output (e.g. -rwsr-x---), 
 and confirmable via id, which will show a differing uid (who you really are) versus euid (who the process is currently acting as for permission checks).
+If that SUID binary is a wrapper that executes an arbitrary, attacker-supplied command with no restriction on what that command is, the vulnerability isn't subtle — it is the feature, functioning exactly as coded, just without the validation a real design would require. This is one of the most severe and common classes of Linux privilege escalation 
+found in real audits, and it maps to MITRE ATT&CK T1548.001 — Setuid and Setgid.
 
+Verified real-world examples of this exact category: misconfigured SUID backup/helper scripts written by sysadmins that internally call sudo-equivalent actions without sanitizing input; legacy setuid utilities left over from older Unix administration habits; custom "helper" binaries meant to let a low-privilege service account perform one specific privileged action, but implemented without restricting which action.
