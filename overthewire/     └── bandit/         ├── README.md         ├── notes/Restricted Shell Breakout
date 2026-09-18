@@ -44,3 +44,5 @@ Verified real-world examples of this exact category: misconfigured SUID backup/h
 4. What this looks like as an actual attack chain in a real environment
 
 Stitching the two techniques together mirrors a real, common lateral-movement/privilege-escalation chain, not just a wargame puzzle:
+
+i) Initial foothold : an attacker obtains valid credentials or a key for a low privilege, intentionally restricted account (a support account, a contractor account, a CI/CD service account, a jump host account meant only for one narrow task).
