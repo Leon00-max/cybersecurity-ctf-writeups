@@ -32,3 +32,8 @@ vi) Verify identity and privilege state immediately with whoami, id, pwd before 
 
 3. Chained finding: SUID binary abuse
 
+Once inside a shell for the target account, standard practice is to enumerate before assuming anything  check the home directory contents and permissions rather than guessing at next steps.
+
+This is where a second, related vulnerability class often shows up: a SUID (Set User ID) binary. On Linux, a file with the SUID bit set runs with the file owner's effective privileges regardless of who executes it — visible as a lowercase s in the owner-execute position of ls -l output (e.g. -rwsr-x---), 
+and confirmable via id, which will show a differing uid (who you really are) versus euid (who the process is currently acting as for permission checks).
+
