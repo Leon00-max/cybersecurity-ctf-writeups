@@ -51,3 +51,7 @@ ii) Local enumeration : The attacker checks for SUID binaries, sudo misconfigura
 iv) Privilege escalation: a misconfigured SUID wrapper (or similar) is used to gain a higher privileged execution context.
 v) Credential access : with elevated access, the attacker isn't typically hunting for a static "password file." They're after live credential material: SSH private keys in ~/.ssh/, cloud provider credentials (~/.aws/credentials, environment variables), API tokens in application config, database connection strings, cached session tokens from a running process. This is MITRE ATT&CK's broader Credential Access tactic (T1552  Unsecured Credentials), not a single narrow trick.
 vi) Pivot: Harvested credentials are used to move laterally to other systems, repeating the cycle.
+
+5. Mistakes made along the way (kept intentionally, because they're the real learning)
+
+Documenting the correct path only demonstrates that I can copy commands. Documenting what went wrong and why demonstrates I actually understand the underlying systems. A representative sample from this exercise:
