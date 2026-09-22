@@ -60,3 +60,6 @@ The lesson generalizes directly to a real technique: attackers forced into low-b
 
 2)Chased a plausible-sounding but incorrect technical theory (an SSH client/server cryptographic signature algorithm mismatch): before checking the actual error message and the environment's own hint documentation, which stated the real cause plainly. Lesson: verify against ground truth (logs, hint files, verbose output) before layering on more speculative 
 fixes  and re-read what the system is already telling you before assuming deeper complexity.
+
+3)Mismatched an authentication key to the wrong username in an SSH command (-i pointing to one account's key while specifying a different account's username), producing a confusing fallback to password-prompt failure instead of a clear error. Lesson: when a tool behaves unexpectedly, check for simple parameter mismatches before assuming a deeper systemic issue.
+
