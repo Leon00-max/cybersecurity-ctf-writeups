@@ -63,3 +63,4 @@ fixes  and re-read what the system is already telling you before assuming deeper
 
 3)Mismatched an authentication key to the wrong username in an SSH command (-i pointing to one account's key while specifying a different account's username), producing a confusing fallback to password-prompt failure instead of a clear error. Lesson: when a tool behaves unexpectedly, check for simple parameter mismatches before assuming a deeper systemic issue.
 
+4)Confused two case-sensitive but functionally different flags across related tools (ssh's -p for port vs. scp's -P for the same purpose, and -p's different meaning within scp itself — preserve file attributes). Lesson: never assume flag consistency across related Unix tools; check man/--help when a flag doesn't behave as expected rather than assuming a typo in the value.
