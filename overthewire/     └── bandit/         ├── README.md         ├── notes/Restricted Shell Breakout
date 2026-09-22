@@ -55,3 +55,5 @@ vi) Pivot: Harvested credentials are used to move laterally to other systems, re
 5. Mistakes made along the way (kept intentionally, because they're the real learning)
 
 Documenting the correct path only demonstrates that I can copy commands. Documenting what went wrong and why demonstrates I actually understand the underlying systems. A representative sample from this exercise:
+Assumed a slower, more error-prone method (manual retyping of a private key across a VM boundary) was equivalent to a proper file transfer.: It isn't — private key files are byte-exact and format-sensitive; a single dropped character produces an unparseable key, and terminal line-wrapping or clipboard sync issues make manual reconstruction unreliable. 
+The lesson generalizes directly to a real technique: attackers forced into low-bandwidth exfiltration channels (when direct transfer tools are firewalled) accept exactly this fragility as a last resort, not a default  and prefer clean, checksummed channels whenever one is available.
