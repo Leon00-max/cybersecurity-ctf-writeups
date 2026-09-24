@@ -73,3 +73,5 @@ Understanding the offensive technique is only half the value; the other half is 
 Don't rely on OS-level restricted shells as a security boundary on their own:
 Modern practice increasingly uses session-broker tools (e.g. Teleport, AWS Systems Manager Session Manager, HashiCorp Boundary) that proxy, log, and enforce policy on every command at the broker level 
  independent of what shell or binaries exist on the target host, so a shell breakout on the host doesn't bypass the actual access-control layer.
+Kernel-level sandboxing (seccomp, AppArmor, SELinux) constrains what a shell can do by restricting syscalls directly, rather than trying to prevent a shell from being obtained at all. 
+Even a full breakout inside a properly sandboxed container has limited blast radius.
