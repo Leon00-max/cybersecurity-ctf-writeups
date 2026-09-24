@@ -75,3 +75,8 @@ Modern practice increasingly uses session-broker tools (e.g. Teleport, AWS Syste
  independent of what shell or binaries exist on the target host, so a shell breakout on the host doesn't bypass the actual access-control layer.
 ii)Kernel-level sandboxing (seccomp, AppArmor, SELinux) constrains what a shell can do by restricting syscalls directly, rather than trying to prevent a shell from being obtained at all. 
 Even a full breakout inside a properly sandboxed container has limited blast radius.
+ii)Least-privilege account design assumes breakout will eventually happen, and focuses on ensuring the account has nothing valuable to escalate into in the first place 
+rather than treating shell restriction as sufficient on its own.
+iv)Any SUID binary that accepts arbitrary command input from a lower-privileged caller is a critical finding, full stop  the fix is either removing the SUID bit and rearchitecting the privileged operation through a narrowly-scoped daemon/API, or hard-coding the specific action rather than accepting caller-supplied commands.
+
+
