@@ -66,3 +66,5 @@ iii)Mismatched an authentication key to the wrong username in an SSH command (-i
 iv)Confused two case-sensitive but functionally different flags across related tools (ssh's -p for port vs. scp's -P for the same purpose, and -p's different meaning within scp itself — preserve file attributes). Lesson: never assume flag consistency across related Unix tools; check man/--help when a flag doesn't behave as expected rather than assuming a typo in the value.
 v)Got stuck in an editor's insert mode, attempting shell-escape commands as literal text input into a file instead of as editor commands. Lesson: Esc is a safe, harmless reset to a known state in modal editors  worth defaulting to it whenever an editor's behavior becomes unexpected, before troubleshooting further.
 
+
+6. Defensive takeaways how this informs remediation, not just exploitation
