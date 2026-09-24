@@ -70,8 +70,8 @@ v)Got stuck in an editor's insert mode, attempting shell-escape commands as lite
 6. Defensive takeaways how this informs remediation, not just exploitation
 Understanding the offensive technique is only half the value; the other half is knowing what a competent fix actually looks like, since "restricting the shell" being weak doesn't mean shell restriction is worthless — it means it can't be the only layer:
 
-Don't rely on OS-level restricted shells as a security boundary on their own:
+i) Don't rely on OS-level restricted shells as a security boundary on their own:
 Modern practice increasingly uses session-broker tools (e.g. Teleport, AWS Systems Manager Session Manager, HashiCorp Boundary) that proxy, log, and enforce policy on every command at the broker level 
  independent of what shell or binaries exist on the target host, so a shell breakout on the host doesn't bypass the actual access-control layer.
-Kernel-level sandboxing (seccomp, AppArmor, SELinux) constrains what a shell can do by restricting syscalls directly, rather than trying to prevent a shell from being obtained at all. 
+ii)Kernel-level sandboxing (seccomp, AppArmor, SELinux) constrains what a shell can do by restricting syscalls directly, rather than trying to prevent a shell from being obtained at all. 
 Even a full breakout inside a properly sandboxed container has limited blast radius.
