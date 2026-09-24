@@ -68,3 +68,5 @@ v)Got stuck in an editor's insert mode, attempting shell-escape commands as lite
 
 
 6. Defensive takeaways how this informs remediation, not just exploitation
+Understanding the offensive technique is only half the value; the other half is knowing what a competent fix actually looks like, since "restricting the shell" being weak doesn't mean shell restriction is worthless — it means it can't be the only layer:
+
