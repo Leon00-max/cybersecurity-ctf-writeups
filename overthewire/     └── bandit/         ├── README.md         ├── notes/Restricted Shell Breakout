@@ -82,3 +82,5 @@ iv)Any SUID binary that accepts arbitrary command input from a lower-privileged 
 7. Skills demonstrated
 
 i) Systematic debugging methodology: reproduce → isolate → verify against ground truth → fix, rather than guessing sequentially
+ii)Recognition of a named, catalogued vulnerability class (GTFOBins-style shell escapes) rather than treating each instance as a novel puzzle
+
