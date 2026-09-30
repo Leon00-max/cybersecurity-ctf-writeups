@@ -86,3 +86,4 @@ ii)Recognition of a named, catalogued vulnerability class (GTFOBins-style shell 
 iii)Understanding of Linux permission internals (real vs. effective UID/GID, SUID/SGID mechanics)
 iv)Mapping hands-on technique to industry-standard threat frameworks (MITRE ATT&CK)
 v)Ability to reason from defensive and offensive perspectives on the same technique
+vi)Honest documentation of failure modes, not just successful paths
