@@ -84,3 +84,4 @@ iv)Any SUID binary that accepts arbitrary command input from a lower-privileged 
 i) Systematic debugging methodology: reproduce → isolate → verify against ground truth → fix, rather than guessing sequentially
 ii)Recognition of a named, catalogued vulnerability class (GTFOBins-style shell escapes) rather than treating each instance as a novel puzzle
 iii)Understanding of Linux permission internals (real vs. effective UID/GID, SUID/SGID mechanics)
+iv)Mapping hands-on technique to industry-standard threat frameworks (MITRE ATT&CK)
