@@ -79,4 +79,6 @@ ii)Least-privilege account design assumes breakout will eventually happen, and f
 rather than treating shell restriction as sufficient on its own.
 iv)Any SUID binary that accepts arbitrary command input from a lower-privileged caller is a critical finding, full stop  the fix is either removing the SUID bit and rearchitecting the privileged operation through a narrowly-scoped daemon/API, or hard-coding the specific action rather than accepting caller-supplied commands.
 
+7. Skills demonstrated
+
 
