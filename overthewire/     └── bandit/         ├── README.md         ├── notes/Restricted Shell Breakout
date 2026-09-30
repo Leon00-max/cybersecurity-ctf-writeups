@@ -81,4 +81,4 @@ iv)Any SUID binary that accepts arbitrary command input from a lower-privileged 
 
 7. Skills demonstrated
 
-
+i) Systematic debugging methodology: reproduce → isolate → verify against ground truth → fix, rather than guessing sequentially
