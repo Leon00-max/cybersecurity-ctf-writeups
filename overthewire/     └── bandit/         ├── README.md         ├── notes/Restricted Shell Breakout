@@ -87,3 +87,4 @@ iii)Understanding of Linux permission internals (real vs. effective UID/GID, SUI
 iv)Mapping hands-on technique to industry-standard threat frameworks (MITRE ATT&CK)
 v)Ability to reason from defensive and offensive perspectives on the same technique
 vi)Honest documentation of failure modes, not just successful paths
+Practiced in a legal, designed-for-training environment (OverTheWire Bandit). No specific level solutions, exact commands tied to level numbers, or spoilers are included, per the platform's community guidelines.
