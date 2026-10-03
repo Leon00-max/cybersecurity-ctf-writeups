@@ -90,3 +90,5 @@ vi)Honest documentation of failure modes, not just successful paths
 Practiced in a legal, designed-for-training environment (OverTheWire Bandit). No specific level solutions, exact commands tied to level numbers, or spoilers are included, per the platform's community guidelines.
 
 Why this matters beyond the puzzle
+
+gitignore is a client-side-only convention — it has zero enforcement power on its own. It relies entirely on the person running git add respecting it, or not knowing about -f. This is genuinely relevant to real security thinking: never assume 
