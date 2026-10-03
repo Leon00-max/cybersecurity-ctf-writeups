@@ -92,4 +92,7 @@ Practiced in a legal, designed-for-training environment (OverTheWire Bandit). No
 Why this matters beyond the puzzle
 
 gitignore is a client-side-only convention — it has zero enforcement power on its own. It relies entirely on the person running git add respecting it, or not knowing about -f. This is genuinely relevant to real security thinking: never assume .gitignore protects sensitive files from ever being committed. It's trivially
-bypassed by anyone using -f, by anyone who already tracked the file before the ignore rule was added, 
+bypassed by anyone using -f, by anyone who already tracked the file before the ignore rule was added, or by a misconfigured pattern. This is exactly why the actual defense against committed secrets is the layered approach from your PDF — pre-commit hooks, CI scanning, secrets managers — not relying on .gitignore as if it were a security boundary.
+
+
+
