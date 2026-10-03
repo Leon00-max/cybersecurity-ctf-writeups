@@ -91,4 +91,5 @@ Practiced in a legal, designed-for-training environment (OverTheWire Bandit). No
 
 Why this matters beyond the puzzle
 
-gitignore is a client-side-only convention — it has zero enforcement power on its own. It relies entirely on the person running git add respecting it, or not knowing about -f. This is genuinely relevant to real security thinking: never assume 
+gitignore is a client-side-only convention — it has zero enforcement power on its own. It relies entirely on the person running git add respecting it, or not knowing about -f. This is genuinely relevant to real security thinking: never assume .gitignore protects sensitive files from ever being committed. It's trivially
+
