@@ -51,3 +51,4 @@ strings "$1" > "$1.ltdis.strings.txt"
 echo "Done!"
 i then search the flag using this comman "$ grep picoCTF static.ltdis.strings.txt" to see the flag
 Attacker context and this is not trivial, despite looking trivial: this is the single most common
+ real-world information-disclosure category in web applications — 
