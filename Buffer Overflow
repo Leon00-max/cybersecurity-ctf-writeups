@@ -35,3 +35,4 @@ not standalone Linux boxes. Kerberoasting, pass-the-hash, BloodHound-style AD at
 Windows and Active Directory this is the big one you're missing entirely:
 The overwhelming majority of real corporate breaches target Windows domain environments,
 mapping, Group Policy abuse — none of Bandit touches this at all, and it's arguably more employable
+knowledge than everything you've done so far combined, depending on the job market you're
