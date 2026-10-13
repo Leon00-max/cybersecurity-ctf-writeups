@@ -54,3 +54,4 @@ Attacker context and this is not trivial, despite looking trivial: this is the s
  real-world information-disclosure category in web applications sensitive data left in client-side source:
 HTML comments with leftover credentials or internal notes, JavaScript files with hardcoded API keys, commented-out debug code, or exposed internal URLs in JS bundles. This happens
 
+Attacker context — and this is not trivial, despite looking trivial: this is the single most common real-world information-disclosure category in web applications — sensitive data left in client-side source:
