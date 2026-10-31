@@ -28,4 +28,4 @@ What I learned:
 I learned that reverse engineering is often about finding the part of a program that makes a security decision and tracing the data used in that decision.
 In this challenge, SHA-256 was not cracked. The program exposed a known username and the exact indexes it used from that username's SHA-256 hash to construct a license key. By reproducing that logic,
 I could determine what the program expected. This demonstrates that strong cryptography can still be part of an insecure system if the surrounding validation design exposes everything needed to reproduce
-a trusted value.
+a trusted value....
