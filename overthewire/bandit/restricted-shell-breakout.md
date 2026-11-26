@@ -1,0 +1,95 @@
+# Linux Restricted Shell Breakout and SUID Privilege Escalation
+
+*Methodology notes · OverTheWire Bandit (legal training environment)*
+
+A hands on study of a real, catalogued Linux vulnerability class, practiced against a legal training environment (OverTheWire Bandit). Specific level solutions are intentionally omitted in respect of OverTheWire's no spoiler policy this writeup documents the underlying concept class, 
+the methodology I used to reason through it, the mistakes I made along the way, and how it maps to real-world offensive and defensive security work.
+
+## 1. The concept: interface restriction vs. capability restriction
+
+A common and weak way to limit what a user account can do on a Linux system is to give it a restricted shell either rbash, or a custom wrapper script set as the account's login shell instead of a normal interactive shell like /bin/bash. 
+The idea: the user logs in, sees or does one narrow thing, and the session ends before they can run arbitrary commands.
+The flaw in this design is almost always the same one: restricting the login shell does not restrict the underlying account's actual filesystem permissions or the other binaries available on the system. If any program reachable from within that restricted context is capable of spawning a subshell a text editor, a pager with an "open in editor" feature,
+a scripting language interpreter, even some binaries with a ! shell-out feature the restriction can be bypassed entirely, and the attacker or tester ends up with a full, unrestricted shell running as that account.
+
+This is not an obscure trick. It's a well-known, actively maintained, publicly documented vulnerability class:
+
+GTFOBins (gtfobins.github.io) catalogues dozens of common Unix binaries editors, pagers, find, awk, python, man, ftp, even journalctl along with the exact technique to escape a restricted shell or escalate privileges using each one, when that binary is reachable in a restricted context or carries elevated permissions.
+This maps to MITRE ATT&CK T1548 Abuse Elevation Control Mechanism, and adjacent techniques under Defense Evasion or Privilege Escalation.
+
+> **Core takeaway:**
+A control that restricts the interface to a system, without restricting the capabilities reachable through that interface, is not a real access control it's an inconvenience.
+
+## 2. Methodology I used to work through it
+
+- Confirm the restriction exists and observe its exact behavior first, rather than assuming. I connected normally, watched what happened a script displays content, then the session terminates, and treated that observed behavior as the actual constraint to work around not a guess
+about what the constraint might be.
+- Identify which program is doing the "display and exit" work. Restricted shells built around a pager (more/less) are extremely common, because sysadmins reach for "just show them a message" as a quick way to build a limited-purpose account.
+- Recall or lookup which features of that program can spawn a subshell. Pagers commonly support an "edit this file" shortcut that launches $EDITOR. If the editor itself isn't disabled or restricted, this becomes the pivot point.
+- Manipulate the environment to force the intended behavior to trigger. Some display and exit scripts only exit cleanly because the content fits entirely on the current screen. Reducing the terminal's dimensions before connecting can force the pager to pause mid-output instead of finishing and exiting creating the window needed to invoke the editor.
+- From inside the editor, invoke a shell explicitly, rather than relying on any implicit escape. Most full-featured editors support setting a shell and spawning it directly as a documented feature (not a bug) this hands over an unrestricted, real login shell running with the target account's privileges.
+- Verify identity and privilege state immediately with whoami, id, pwd before taking any further action. Acting on an assumed privilege level instead of a confirmed one is a real, avoidable mistake in this line of work.
+
+## 3. Chained finding: SUID binary abuse
+
+Once inside a shell for the target account, standard practice is to enumerate before assuming anything check the home directory contents and permissions rather than guessing at next steps.
+
+This is where a second, related vulnerability class often shows up: a SUID (Set User ID) binary. On Linux, a file with the SUID bit set runs with the file owner's effective privileges regardless of who executes it — visible as a lowercase s in the owner-execute position of ls -l output (e.g. -rwsr-x---), 
+and confirmable via id, which will show a differing uid (who you really are) versus euid (who the process is currently acting as for permission checks).
+If that SUID binary is a wrapper that executes an arbitrary, attacker-supplied command with no restriction on what that command is, the vulnerability isn't subtle it is the feature, functioning exactly as coded, just without the validation a real design would require. This is one of the most severe and common classes of Linux privilege escalation 
+found in real audits, and it maps to MITRE ATT&CK T1548.001 Setuid and Setgid.
+
+Verified real-world examples of this exact category: misconfigured SUID backup/helper scripts written by sysadmins that internally call sudo-equivalent actions without sanitizing input; legacy setuid utilities left over from older Unix administration habits; custom "helper" binaries meant to let a low-privilege service account perform one specific privileged action, but implemented without restricting which action.
+
+## 4. What this looks like as an actual attack chain in a real environment
+
+Stitching the two techniques together mirrors a real, common lateral-movement/privilege-escalation chain, not just a wargame puzzle:
+
+- Initial foothold : an attacker obtains valid credentials or a key for a low privilege, intentionally restricted account (a support account, a contractor account, a CI/CD service account, a jump host account meant only for one narrow task).
+- Shell breakout : using a GTFOBins style technique(check their github repo if want to learn other tools), the attacker escapes the restricted interface and obtains a full interactive shell running with that account's real privileges.
+- Local enumeration : The attacker checks for SUID binaries, sudo misconfigurations, writable cron jobs, and world-readable credential files (find / -perm -4000 2>/dev/null and equivalents).
+- Privilege escalation: a misconfigured SUID wrapper (or similar) is used to gain a higher privileged execution context.
+- Credential access : with elevated access, the attacker isn't typically hunting for a static "password file." They're after live credential material: SSH private keys in ~/.ssh/, cloud provider credentials (~/.aws/credentials, environment variables), API tokens in application config, database connection strings, cached session tokens from a running process. This is MITRE ATT&CK's broader Credential Access tactic (T1552 Unsecured Credentials), not a single narrow trick.
+- Pivot: Harvested credentials are used to move laterally to other systems, repeating the cycle.
+
+## 5. Mistakes made along the way (kept intentionally, because they're the real learning)
+
+Documenting the correct path only demonstrates that I can copy commands. Documenting what went wrong and why demonstrates I actually understand the underlying systems. A representative sample from this exercise:
+- Assumed a slower, more error-prone method (manual retyping of a private key across a VM boundary) was equivalent to a proper file transfer.: It isn't — private key files are byte-exact and format-sensitive; a single dropped character produces an unparseable key, and terminal line-wrapping or clipboard sync issues make manual reconstruction unreliable.
+The lesson generalizes directly to a real technique: attackers forced into low-bandwidth exfiltration channels (when direct transfer tools are firewalled) accept exactly this fragility as a last resort, not a default and prefer clean, checksummed channels whenever one is available.
+
+- Chased a plausible-sounding but incorrect technical theory (an SSH client/server cryptographic signature algorithm mismatch): before checking the actual error message and the environment's own hint documentation, which stated the real cause plainly. Lesson: verify against ground truth (logs, hint files, verbose output) before layering on more speculative
+fixes and re-read what the system is already telling you before assuming deeper complexity.
+
+- Mismatched an authentication key to the wrong username in an SSH command (-i pointing to one account's key while specifying a different account's username), producing a confusing fallback to password-prompt failure instead of a clear error. Lesson: when a tool behaves unexpectedly, check for simple parameter mismatches before assuming a deeper systemic issue.
+
+- Confused two case-sensitive but functionally different flags across related tools (ssh's -p for port vs. scp's -P for the same purpose, and -p's different meaning within scp itself — preserve file attributes). Lesson: never assume flag consistency across related Unix tools; check man/--help when a flag doesn't behave as expected rather than assuming a typo in the value.
+- Got stuck in an editor's insert mode, attempting shell-escape commands as literal text input into a file instead of as editor commands. Lesson: Esc is a safe, harmless reset to a known state in modal editors worth defaulting to it whenever an editor's behavior becomes unexpected, before troubleshooting further.
+
+## 6. Defensive takeaways how this informs remediation, not just exploitation
+
+Understanding the offensive technique is only half the value; the other half is knowing what a competent fix actually looks like, since "restricting the shell" being weak doesn't mean shell restriction is worthless — it means it can't be the only layer:
+
+- Don't rely on OS-level restricted shells as a security boundary on their own:
+Modern practice increasingly uses session-broker tools (e.g. Teleport, AWS Systems Manager Session Manager, HashiCorp Boundary) that proxy, log, and enforce policy on every command at the broker level 
+ independent of what shell or binaries exist on the target host, so a shell breakout on the host doesn't bypass the actual access-control layer.
+- Kernel-level sandboxing (seccomp, AppArmor, SELinux) constrains what a shell can do by restricting syscalls directly, rather than trying to prevent a shell from being obtained at all.
+Even a full breakout inside a properly sandboxed container has limited blast radius.
+- Least-privilege account design assumes breakout will eventually happen, and focuses on ensuring the account has nothing valuable to escalate into in the first place
+rather than treating shell restriction as sufficient on its own.
+- Any SUID binary that accepts arbitrary command input from a lower-privileged caller is a critical finding, full stop the fix is either removing the SUID bit and rearchitecting the privileged operation through a narrowly-scoped daemon/API, or hard-coding the specific action rather than accepting caller-supplied commands.
+
+## 7. Skills demonstrated
+
+- Systematic debugging methodology: reproduce → isolate → verify against ground truth → fix, rather than guessing sequentially
+- Recognition of a named, catalogued vulnerability class (GTFOBins-style shell escapes) rather than treating each instance as a novel puzzle
+- Understanding of Linux permission internals (real vs. effective UID/GID, SUID/SGID mechanics)
+- Mapping hands-on technique to industry-standard threat frameworks (MITRE ATT&CK)
+- Ability to reason from defensive and offensive perspectives on the same technique
+- Honest documentation of failure modes, not just successful paths
+Practiced in a legal, designed-for-training environment (OverTheWire Bandit). No specific level solutions, exact commands tied to level numbers, or spoilers are included, per the platform's community guidelines.
+
+
+
+## Bonus: `.gitignore` is not a security control
+`.gitignore` only works if everyone respects it. It is bypassed by `git add -f`, by files already tracked before the rule was added, and by badly written patterns. The real defence against committed secrets is layered: pre-commit hooks, CI secret scanning, and a proper secrets manager.
