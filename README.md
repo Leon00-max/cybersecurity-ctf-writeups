@@ -31,8 +31,8 @@ flowchart LR
 
 | Platform | Track | Status | Writeups |
 |---|---|:-:|---|
-| OverTheWire | **Natas 0–9** (web) | ✅ Done | [Natas 1–9 · Thinking like an attacker](overthewire/natas/README.md) |
-| OverTheWire | **Bandit** (Linux) | 🟡 In progress | [Index](overthewire/bandit/README.md) |
+| OverTheWire | **Natas 0–9** (web) | 🟡 In progress | [Natas 1–9 · Thinking like an attacker](overthewire/natas/README.md) |
+| OverTheWire | **Bandit** (Linux) | ✅ Done | [Index](overthewire/bandit/README.md) |
 | picoCTF | General Skills / Crypto / RE | 🟡 In progress | [Index](picoCTF/README.md) |
 | C & systems | I/O, unsafe functions | 🟡 Notes | [stdio & unsafe functions](c-and-systems/stdio-buffering-and-unsafe-functions.md) |
 
